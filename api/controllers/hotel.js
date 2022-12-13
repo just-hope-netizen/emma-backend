@@ -35,7 +35,7 @@ export const createHotel = async (req, res) => {
 
 export const createRoom = async (req, res) => {
 
-  const { id, title, price, image } = req.body;
+  const { id, title, price, image, amountRoom } = req.body;
 
   //upload image
   const uploadedImage = await cloudinary.uploader.upload(image,
@@ -54,7 +54,7 @@ export const createRoom = async (req, res) => {
       {
         $push: {
           "rooms": {
-            title: title, price: price, img: {
+            title, price, amountRoom, img: {
               public_id: uploadedImage.public_id,
               url: uploadedImage.secure_url
             },
@@ -132,9 +132,9 @@ export const deleteProduct = async (req, res) => {
 export const getHotels = async (req, res) => {
   const query = req.query.area;
   try {
-    
-    const hotels = await Hotel.find({ area: { $regex: query , $options: 'i'} })
-    
+
+    const hotels = await Hotel.find({ area: { $regex: query, $options: 'i' } })
+
     res.status(200).json(hotels);
   } catch (err) {
     res.status(500).json(err);
@@ -145,7 +145,7 @@ export const getHotel = async (req, res) => {
   const query = req.query.hotel;
 
   try {
-    const hotels = await Hotel.find({ name: { $regex: query , $options: 'i'} })
+    const hotels = await Hotel.find({ name: { $regex: query, $options: 'i' } })
     res.status(200).json(hotels);
   } catch (err) {
     res.status(500).json(err);

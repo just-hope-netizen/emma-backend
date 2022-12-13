@@ -42,7 +42,9 @@ const hotelSchema = new Schema({
       price: {
         type: String,
       },
-
+      amountRoom: {
+        type: String
+      },
       status: {
         type: Boolean,
         default: false
