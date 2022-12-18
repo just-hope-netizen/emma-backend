@@ -4,7 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 import hotelRoute from './api/routes/hotel.js';
-// import orderRoute from './api/routes/order.js';
+import bookedRoute from './api/routes/booked.js';
 import { get404 } from './api/controllers/error.js';
 
 const app = express();
@@ -42,7 +42,7 @@ app.use('/hotels', hotelRoute);
 
 
 //order routes
-// app.use('/orders', orderRoute);
+app.use('/booked', bookedRoute);
 
 
 app.use(get404);
