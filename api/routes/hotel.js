@@ -3,7 +3,9 @@ import {
   verifyTokenAndAdmin,
 } from './verifyToken.js';
 import {
-  createHotel, createRoom, getHotel, getHotels } from '../controllers/hotel.js';
+  allHotels,
+  createHotel, createRoom, getHotel, getHotels
+} from '../controllers/hotel.js';
 
 const router = express.Router();
 
@@ -24,5 +26,8 @@ router.get('/find', getHotels);
 
 //get  products
 router.get('/', getHotel);
+
+//get  products
+router.get('/all', allHotels);
 
 export default router;

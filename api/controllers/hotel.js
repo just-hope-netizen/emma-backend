@@ -132,16 +132,11 @@ export const deleteProduct = async (req, res) => {
 export const getHotels = async (req, res) => {
   const query = req.query.area;
   try {
-    if (query.typeOf === undefined) {
-      const hotels = await Hotel.find({})
-      console.log(hotels);
-      res.status(200).json(hotels);
-    } else {
-      const hotels = await Hotel.find({ area: { $regex: query, $options: 'i' } })
 
-      res.status(200).json(hotels);
+    const hotels = await Hotel.find({ area: { $regex: query, $options: 'i' } })
 
-    }
+    res.status(200).json(hotels);
+
   } catch (err) {
     res.status(500).json(err);
   }
@@ -152,6 +147,17 @@ export const getHotel = async (req, res) => {
 
   try {
     const hotels = await Hotel.find({ name: { $regex: query, $options: 'i' } })
+
+
+    res.status(200).json(hotels);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+}
+export const allHotels = async (req, res) => {
+
+  try {
+    const hotels = await Hotel.find({})
 
 
     res.status(200).json(hotels);
